@@ -2,11 +2,18 @@ import { readFileSync } from "fs";
 
 interface Person {
   age: number;
-  height: number;
+  [key: string]: number;
 }
 
-function getStatistics(): { meanAge: number; meanHeight: number } {
-  const persons: Person[] = JSON.parse(readFileSync("./persons.json").toString());
+interface Statistics {
+  meanAge: number;
+  meanHeight: number;
+}
+
+function getStatistics(): Statistics {
+  const persons: Person[] = JSON.parse(
+      readFileSync('./persons.json').toString()
+    );
 
   const ageSum = persons.reduce((sum, person) => sum + person.age, 0);
   const meanAge = ageSum / persons.length;
