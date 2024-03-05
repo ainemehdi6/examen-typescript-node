@@ -5,7 +5,7 @@ interface Person {
   height: number;
 }
 
-function getStatistics(): number {
+function getStatistics(): { meanAge: number; meanHeight: number } {
   const persons: Person[] = JSON.parse(readFileSync("./persons.json").toString());
 
   const ages = persons.map(person => person.age);
