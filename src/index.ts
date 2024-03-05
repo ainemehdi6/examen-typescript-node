@@ -8,7 +8,10 @@ interface Person {
 function getStatistics(): number {
   const persons: Person[] = JSON.parse(readFileSync("./persons.json").toString());
 
-  return 0;
+  const ages = persons.map(person => person.age);
+  const maxAge = Math.max(...ages);
+
+  return maxAge;
 }
 
 function displayResult() {
